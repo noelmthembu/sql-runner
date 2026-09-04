@@ -1,0 +1,1 @@
+- [Browser test runtime](browser-test-runtime.md) — Playwright Chromium needs the workspace's Nix headless-browser libraries to launch reliably.

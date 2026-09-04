@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "SQL Runner"
+description = "An embeddable SQL workspace for exploring a sample database, editing queries, running them locally, and inspecting structured results in a focused interface."
+version = "1.0.0"
+id = "artifacts/sql-runner"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20114
+
+[services.development]
+run = "pnpm --filter @workspace/sql-runner run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/sql-runner", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/sql-runner/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20114"
+BASE_PATH = "/"
